@@ -44,6 +44,11 @@ fetch(`http://localhost:3000/api/products/${productId}`)
 
     // Ajout d'un écouteur d'événement pour l'ajout de produit au panier
     addToCartBtn.addEventListener('click', () => {
+      // Vérification si une couleur est sélectionnée
+      if (!colorList.value) {
+        alert("Veuillez sélectionner une couleur avant d'ajouter un produit au panier");
+        return;
+      }
       // Récupération de la couleur sélectionnée, de la quantité saisie et du prix
       const selectedColor = colorList.value;
       const selectedQuantity = Number(quantityInput.value);
