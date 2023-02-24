@@ -49,6 +49,11 @@ fetch(`http://localhost:3000/api/products/${productId}`)
         alert("Veuillez sélectionner une couleur avant d'ajouter un produit au panier");
         return;
       }
+      // Vérification si la quantité saisie est supérieure à 0
+      if (quantityInput.value <= 0) {
+        alert("Veuillez saisir une quantité minimum de 1 produit");
+        return;
+      }
       // Récupération de la couleur sélectionnée, de la quantité saisie et du prix
       const selectedColor = colorList.value;
       const selectedQuantity = Number(quantityInput.value);
