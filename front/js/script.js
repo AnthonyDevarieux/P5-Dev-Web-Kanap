@@ -30,7 +30,6 @@ function getProducts() {
       for (const product of products) {
         // Créer un élément HTML pour chaque produit
         const productElement = createProductElement(product);
-
         // Ajouter l'élément au DOM
         document.getElementById('items').appendChild(productElement);
       }

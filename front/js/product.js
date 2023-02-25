@@ -4,7 +4,6 @@ const productId = new URLSearchParams(window.location.search).get('productId');
 // Récupération des données de produit à partir de l'API en utilisant l'identifiant de produit passé dans l'URL
 fetch(`http://localhost:3000/api/products/${productId}`)
   .then(response => {
-    // Convertir la réponse en format JSON
     return response.json()
   })
   .then(product => {
@@ -18,7 +17,6 @@ fetch(`http://localhost:3000/api/products/${productId}`)
       addToCartBtn: document.getElementById('addToCart'),
       quantityInput: document.getElementById('quantity'),
     };
-
     // Mise à jour du titre avec le nom de produit
     title.textContent = product.name;
     // Création d'un élément image avec l'URL de l'image de produit et la description alternative
@@ -38,10 +36,8 @@ fetch(`http://localhost:3000/api/products/${productId}`)
       optionElement.textContent = color;
       colorList.appendChild(optionElement);
     }
-
     // Récupération du panier existant depuis le stockage local ou création d'un nouveau panier
     let cart = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [];
-
     // Ajout d'un écouteur d'événement pour l'ajout de produit au panier
     addToCartBtn.addEventListener('click', () => {
       // Vérification si une couleur est sélectionnée
@@ -76,7 +72,7 @@ fetch(`http://localhost:3000/api/products/${productId}`)
       const cart = JSON.parse(localStorage.getItem("cart"));
       console.log(cart);
     }
-
+    
     // Ajout d'un écouteur d'événement pour l'affichage du panier lors de l'ajout d'un produit
     document.getElementById("addToCart").addEventListener("click", displayCart); 
   });
