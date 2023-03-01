@@ -65,6 +65,9 @@ fetch(`http://localhost:3000/api/products/${productId}`)
       }
       // Stockage du panier mise à jour dans le stockage local
       localStorage.setItem("cart", JSON.stringify(cart));
+      // Affichage du message de confirmation
+      const confirmationMessage = `Le produit a été ajouté au panier`;
+      window.alert(confirmationMessage);
     });
 
     // Fonction pour afficher le contenu du panier dans la console

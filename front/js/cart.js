@@ -152,9 +152,20 @@ function removeCartItem(event) {
 // Récupération de l'élément de formulaire HTML
 const form = document.querySelector('.cart__order__form');
 
+// Fonction pour vider le panier
+function clearCart() {
+  localStorage.removeItem('cart');
+}
+
 // Ajout d'un gestionnaire d'événement de soumission du formulaire
 form.addEventListener('submit', function(event) {
   event.preventDefault();
+  // Vérification si le panier est vide
+  const cart = getCartFromLocalStorage();
+  if (cart.length === 0) {
+    alert('Votre panier est vide. Veuillez choisir des produits avant de commander.');
+    return;
+  }
   // Récupération des données de formulaire saisies par l'utilisateur
   const firstName = document.querySelector('#firstName').value.trim();
   const lastName = document.querySelector('#lastName').value.trim();
@@ -237,6 +248,7 @@ form.addEventListener('submit', function(event) {
   })
   .then(function(data) {
     const orderId = data.orderId;
+    clearCart();
     window.location.href = `confirmation.html?id=${orderId}`;
   })
   .catch(function(error) {
